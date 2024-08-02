@@ -8,5 +8,6 @@ const getters = {
   permission_routes: state => state.permission.routes,
   visitedViews: state => state.tagsView.visitedViews,
   cachedViews: state => state.tagsView.cachedViews,
+  isGenerateRoute: state => state.permission.isGenerateRoute
 }
 export default getters

@@ -6207,16 +6207,16 @@
         },
         {
             "name": "zero0719/hyperf-admin",
-            "version": "1.1.6",
+            "version": "1.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Zero0719/hyperf-admin.git",
-                "reference": "803fa5990ac85f5f48a9d595290bc15fbf1c39cd"
+                "reference": "a31d9252c43f95f8975e7ef524cfc438a029384e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Zero0719/hyperf-admin/zipball/803fa5990ac85f5f48a9d595290bc15fbf1c39cd",
-                "reference": "803fa5990ac85f5f48a9d595290bc15fbf1c39cd",
+                "url": "https://api.github.com/repos/Zero0719/hyperf-admin/zipball/a31d9252c43f95f8975e7ef524cfc438a029384e",
+                "reference": "a31d9252c43f95f8975e7ef524cfc438a029384e",
                 "shasum": ""
             },
             "require": {
@@ -6245,9 +6245,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Zero0719/hyperf-admin/issues",
-                "source": "https://github.com/Zero0719/hyperf-admin/tree/v1.1.6"
+                "source": "https://github.com/Zero0719/hyperf-admin/tree/v1.1.7"
             },
-            "time": "2024-07-22T02:44:55+00:00"
+            "time": "2024-08-01T09:56:02+00:00"
         },
         {
             "name": "zero0719/hyperf-api",
