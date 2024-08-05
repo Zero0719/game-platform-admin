@@ -32,6 +32,18 @@ import Layout from '@/layout'
  */
 export const constantRoutes = [
   {
+    path: '/redirect',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/redirect/:path(.*)',
+        component: () => import('@/views/redirect/index')
+      }
+    ]
+  },
+
+  {
     path: '/login',
     component: () => import('@/views/login/index'),
     hidden: true
@@ -73,16 +85,19 @@ export const asyncRoutes = [
       {
         path: '/users',
         name: 'Users',
+        component: () => import('@/views/user/index'),
         meta: { title: '用户列表', permission: 'userList' }
       },
       {
         path: '/roles',
         name: 'Roles',
+        component: () => import('@/views/role/index'),
         meta: { title: '角色列表', permission: 'roleList' }
       },
       {
         path: '/permissions',
         name: 'Permissions',
+        component: () => import('@/views/permission/index'),
         meta: { title: '权限列表', permission: 'permissionList' }
       }
     ]

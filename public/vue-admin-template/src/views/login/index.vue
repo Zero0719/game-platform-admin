@@ -65,7 +65,18 @@ export default {
       immediate: true
     }
   },
+  mounted() {
+    window.addEventListener('keyup', this.handleKeyup)
+  },
+  beforeDestroy() {
+    window.removeEventListener('keyup', this.handleKeyup)
+  },
   methods: {
+    handleKeyup(event) {
+      if (event.key === 'Enter') {
+        this.handleLogin()
+      }
+    },
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''

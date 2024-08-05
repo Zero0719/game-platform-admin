@@ -41,10 +41,14 @@ export default {
     Breadcrumb,
     Hamburger
   },
+  data() {
+    return {
+      avatar: require('@/assets/avatar.gif')
+    }
+  },
   computed: {
     ...mapGetters([
-      'sidebar',
-      'avatar'
+      'sidebar'
     ])
   },
   methods: {

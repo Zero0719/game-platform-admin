@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8cd60b712c9c3d44b3cbed6315717666",
+    "content-hash": "bd470bbb9952a0f914a4ef3e8f20f509",
     "packages": [
         {
             "name": "carbonphp/carbon-doctrine-types",
@@ -6204,50 +6204,6 @@
                 }
             ],
             "time": "2024-07-20T21:52:34+00:00"
-        },
-        {
-            "name": "zero0719/hyperf-admin",
-            "version": "1.1.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Zero0719/hyperf-admin.git",
-                "reference": "a31d9252c43f95f8975e7ef524cfc438a029384e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Zero0719/hyperf-admin/zipball/a31d9252c43f95f8975e7ef524cfc438a029384e",
-                "reference": "a31d9252c43f95f8975e7ef524cfc438a029384e",
-                "shasum": ""
-            },
-            "require": {
-                "zero0719/hyperf-api": "^1.1"
-            },
-            "type": "library",
-            "extra": {
-                "hyperf": {
-                    "config": "Zero0719\\HyperfAdmin\\ConfigProvider"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Zero0719\\HyperfAdmin\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "hejiayu",
-                    "email": "724412707@qq.com"
-                }
-            ],
-            "support": {
-                "issues": "https://github.com/Zero0719/hyperf-admin/issues",
-                "source": "https://github.com/Zero0719/hyperf-admin/tree/v1.1.7"
-            },
-            "time": "2024-08-01T09:56:02+00:00"
         },
         {
             "name": "zero0719/hyperf-api",

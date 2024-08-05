@@ -12,7 +12,7 @@
 export default {
   name: 'AppMain',
   computed: {
-    //需要缓存的页面 固钉
+    // 需要缓存的页面 固钉
     cachedViews() {
       return this.$store.state.tagsView.cachedViews
     },
@@ -28,6 +28,7 @@ export default {
   .app-main {
     /* 84 = navbar + tags-view = 50 + 34 */
     min-height: calc(100vh - 84px);
+    padding: 20px;
   }
 
   .fixed-header+.app-main {

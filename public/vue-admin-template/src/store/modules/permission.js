@@ -52,7 +52,6 @@ const actions = {
     return new Promise(resolve => {
       const { roles, permissions } = params
       let accessedRoutes
-      console.log(permissions)
       if (roles.includes('SuperAdmin')) {
         accessedRoutes = asyncRoutes || []
       } else {
