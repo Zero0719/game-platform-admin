@@ -22,6 +22,9 @@ cd admin-project
 
 composer install
 
+# 修改配置信息
+cp .env.example .env
+
 php bin/hyperf.php admin:install
 
 php bin/hyperf.php start
