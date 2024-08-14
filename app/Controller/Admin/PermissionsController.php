@@ -45,4 +45,9 @@ class PermissionsController extends BaseController
     {
         return $this->success($this->service->show());
     }
+
+    public function all()
+    {
+        return $this->success($this->service->all());
+    }
 }

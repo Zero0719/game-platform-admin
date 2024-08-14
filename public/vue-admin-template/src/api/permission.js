@@ -17,7 +17,7 @@ export function createPermission(data) {
 
 export function updatePermission(id, data) {
   return request({
-    url: '/admin/permissions/' + id,
+    url: `/admin/permissions/${id}`,
     method: 'put',
     data
   })
@@ -25,13 +25,19 @@ export function updatePermission(id, data) {
 
 export function showPermission(id) {
   return request({
-    url: '/admin/permissions/' + id
+    url: `/admin/permissions/${id}`
   })
 }
 
 export function destroyPermission(id) {
   return request({
-    url: '/admin/permissions/' + id,
+    url: `/admin/permissions/${id}`,
     method: 'delete'
+  })
+}
+
+export function allPermission() {
+  return request({
+    url: '/admin/all/permissions'
   })
 }

@@ -46,4 +46,14 @@ class RolesController extends BaseController
     {
         return $this->success($this->service->show());
     }
+
+    public function all()
+    {
+        return $this->success($this->service->all());
+    }
+
+    public function permissions()
+    {
+        return $this->success($this->service->permissions());
+    }
 }

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Service\Admin;
 
+use App\Model\Admin\Permission;
 use App\Model\Admin\Permission as AdminPermissions;
 use Hyperf\Database\Model\Builder;
 use Zero0719\HyperfApi\Exception\BusinessException;
@@ -60,5 +61,10 @@ class PermissionsService extends BaseService
         if (!$permission->delete()) {
             throw new BusinessException('删除失败');
         }
+    }
+
+    public function all()
+    {
+        return Permission::select(['id', 'name'])->get()->toArray();
     }
 }

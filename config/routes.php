@@ -32,6 +32,12 @@ Router::addGroup('/admin', function () {
         Router::get('/roles/{id}', [App\Controller\Admin\RolesController::class, 'show']);
         Router::get('/permissions/{id}', [App\Controller\Admin\PermissionsController::class, 'show']);
 
+        Router::get('/all/roles', [App\Controller\Admin\RolesController::class, 'all']);
+        Router::get('/all/permissions', [App\Controller\Admin\PermissionsController::class, 'all']);
+
+        Router::get('/user/{id}/roles', [App\Controller\Admin\UsersController::class, 'roles']);
+        Router::get('/role/{id}/permissions', [App\Controller\Admin\RolesController::class, 'permissions']);
+
         // 需要rbac鉴权部分
         Router::addGroup('', function () {
             Router::get('/users', [App\Controller\Admin\UsersController::class, 'list'], ['name' => 'userList']);

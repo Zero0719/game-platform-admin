@@ -52,4 +52,9 @@ class UsersController extends BaseController
         $this->service->changeStatus();
         return $this->success();
     }
+
+    public function roles()
+    {
+        return $this->success($this->service->roles());
+    }
 }

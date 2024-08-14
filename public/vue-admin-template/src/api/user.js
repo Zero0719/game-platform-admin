@@ -40,13 +40,13 @@ export function createUser(data) {
 
 export function showUser(id) {
   return request({
-    url: '/admin/users/' + id
+    url: `/admin/users/${id}`
   })
 }
 
 export function updateUser(id, data) {
   return request({
-    url: '/admin/users/' + id,
+    url: `/admin/users/${id}`,
     method: 'put',
     data
   })
@@ -54,15 +54,29 @@ export function updateUser(id, data) {
 
 export function destroyUser(id) {
   return request({
-    url: '/admin/users/' + id,
+    url: `/admin/users/${id}`,
     method: 'delete'
   })
 }
 
 export function changeStatus(id, status) {
   return request({
-    url: '/admin/users/status/' + id,
+    url: `/admin/users/status/${id}`,
     method: 'put',
     data: { status }
+  })
+}
+
+export function getRoles(id) {
+  return request({
+    url: `/admin/user/${id}/roles`
+  })
+}
+
+export function grantRolesToUser(userId, roles) {
+  return request({
+    url: '/admin/syncRoleToUser',
+    data: { userId, roles },
+    method: 'post'
   })
 }

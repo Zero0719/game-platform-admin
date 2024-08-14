@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Service\Admin;
 
+use App\Model\Admin\Permission;
+use App\Model\Admin\Role;
 use App\Model\Admin\Role as AdminRoles;
 use Hyperf\Database\Model\Builder;
 use Zero0719\HyperfApi\Exception\BusinessException;
@@ -64,5 +66,16 @@ class RolesService extends BaseService
         if (!$role->delete()) {
             throw new BusinessException('删除失败');
         }
+    }
+
+    public function all()
+    {
+        return AdminRoles::select(['id', 'name', 'status'])->get()->toArray();
+    }
+
+    public function permissions()
+    {
+        $role = Role::with('permissions')->findOrFail($this->request->route('id'));
+        return $role->permissions->toArray();
     }
 }

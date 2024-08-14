@@ -97,4 +97,12 @@ class UsersService extends BaseService
             throw new BusinessException('更改状态失败');
         }
     }
+
+
+    public function roles()
+    {
+        $user = User::with('roles')->findOrFail($this->request->route('id'));
+        $roles = $user->roles->toArray();
+        return $roles;
+    }
 }
