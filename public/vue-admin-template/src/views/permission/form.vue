@@ -1,11 +1,11 @@
 <template>
   <el-dialog title="" :visible.sync="show" :close-on-click-modal="false" @close="closeDialog">
     <el-form :model="form">
-      <el-form-item label="角色名">
+      <el-form-item label="权限名">
         <el-input v-model="form.name" placeholder="" />
       </el-form-item>
 
-      <el-form-item label="角色标识">
+      <el-form-item label="权限标识">
         <el-input v-model="form.flag" placeholder="" />
       </el-form-item>
 
@@ -19,7 +19,7 @@
 
 <script>
 import dialogMixin from '@/mixins/dialogMixin'
-import { createRole, updateRole, showRole } from '@/api/role'
+import { createPermission, updatePermission, showPermission } from '@/api/permission'
 
 export default {
   mixins: [dialogMixin],
@@ -36,7 +36,7 @@ export default {
   },
   mounted() {
     if (this.targetId !== 0) {
-      showRole(this.targetId).then(res => {
+      showPermission(this.targetId).then(res => {
         this.$set(this.form, 'name', res.data.name)
         this.$set(this.form, 'flag', res.data.flag)
       })
@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     async submit() {
-      this.targetId === 0 ? await createRole(this.form) : await updateRole(this.targetId, this.form)
+      this.targetId === 0 ? await createPermission(this.form) : await updatePermission(this.targetId, this.form)
       this.$message.success('提交成功')
       this.$emit('submitSuccess')
       this.show = false

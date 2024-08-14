@@ -53,11 +53,11 @@ service.interceptors.response.use(
       })
 
       // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
-      if (res.code === 401 || res.code === 50012 || res.code === 50014) {
+      if (res.code === 401 || res.code === 400 || res.code === 50014) {
         // to re-login
-        MessageBox.confirm('You have been logged out, you can cancel to stay on this page, or log in again', 'Confirm logout', {
-          confirmButtonText: 'Re-Login',
-          cancelButtonText: 'Cancel',
+        MessageBox.confirm('您的登录已失效，请重新登录', '提示', {
+          confirmButtonText: '重 登',
+          cancelButtonText: '取 消',
           type: 'warning'
         }).then(() => {
           store.dispatch('user/resetToken').then(() => {

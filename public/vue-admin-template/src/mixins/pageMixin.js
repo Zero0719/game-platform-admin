@@ -19,20 +19,27 @@ export default {
     this.fetchData()
   },
   methods: {
+    // 搜索
     search() {
       this.searchForm.page = 1
       this.fetchData()
     },
+
+    // 跳页
     changePage(page) {
       this.searchForm.page = page
       this.fetchData()
     },
+
+    // 清除搜索框表单
     clearSearchForm() {
       this.searchForm = {
         page: 1,
         pageSize: 15
       }
     },
+
+    // 获取列表数据
     async fetchData() {
       if (typeof this.pageUrl !== 'function') {
         throw new Error('请给 pageUrl 赋值请求函数')
@@ -42,6 +49,8 @@ export default {
       this.pageData = result.data
       this.loading = false
     },
+
+    // 关闭弹窗
     closeDialog() {
       this.targetId = 0
       this.pageComponent = null
