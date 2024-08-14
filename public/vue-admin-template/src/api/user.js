@@ -80,3 +80,9 @@ export function grantRolesToUser(userId, roles) {
     method: 'post'
   })
 }
+
+export function testDownload() {
+  return request({
+    url: '/admin/download'
+  })
+}

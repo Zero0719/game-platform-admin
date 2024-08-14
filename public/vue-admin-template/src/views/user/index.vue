@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { userList, destroyUser, changeStatus } from '@/api/user'
+import { userList, destroyUser, changeStatus, testDownload } from '@/api/user'
 import pageMixin from '@/mixins/pageMixin'
 
 export default {
@@ -81,6 +81,11 @@ export default {
         this.$message.success('切换状态成功')
       }).catch(() => {
         this.pageData.lists[index].status = row.status === 0 ? 1 : 0
+      })
+    },
+    test_download() {
+      testDownload().then(res => {
+        console.log(res)
       })
     }
   }

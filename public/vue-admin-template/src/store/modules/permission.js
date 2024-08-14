@@ -35,15 +35,13 @@ export function filterAsyncRoutes(routes, permissions) {
 
 const state = {
   routes: [],
-  addRoutes: [],
-  isGenerateRoute: false
+  addRoutes: []
 }
 
 const mutations = {
   SET_ROUTES: (state, routes) => {
     state.addRoutes = routes
     state.routes = constantRoutes.concat(routes)
-    state.isGenerateRoute = true
   }
 }
 
