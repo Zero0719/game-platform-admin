@@ -1,63 +1,111 @@
-# Introduction
+## 后台项目雏形
 
-This is a skeleton application using the Hyperf framework. This application is meant to be used as a starting place for those looking to get their feet wet with Hyperf Framework.
+项目以 `hyperf` 作为后端, `vue-admin-template` 作为前端模板，实现了基于 `rbac` 的控制权限模型。
 
-# Requirements
+## 环境
 
-Hyperf has some requirements for the system environment, it can only run under Linux and Mac environment, but due to the development of Docker virtualization technology, Docker for Windows can also be used as the running environment under Windows.
+* php8.1
+* swoole 5.x
+* hyperf 3.x
+* xmlwriter 扩展 (如果需要用到excel等内容)
+* composer
+* npm
 
-The various versions of Dockerfile have been prepared for you in the [hyperf/hyperf-docker](https://github.com/hyperf/hyperf-docker) project, or directly based on the already built [hyperf/hyperf](https://hub.docker.com/r/hyperf/hyperf) Image to run.
-
-When you don't want to use Docker as the basis for your running environment, you need to make sure that your operating environment meets the following requirements:  
-
- - PHP >= 8.1
- - Any of the following network engines
-   - Swoole PHP extension >= 5.0，with `swoole.use_shortname` set to `Off` in your `php.ini`
-   - Swow PHP extension >= 1.3
- - JSON PHP extension
- - Pcntl PHP extension
- - OpenSSL PHP extension （If you need to use the HTTPS）
- - PDO PHP extension （If you need to use the MySQL Client）
- - Redis PHP extension （If you need to use the Redis Client）
- - Protobuf PHP extension （If you need to use the gRPC Server or Client）
-
-# Installation using Composer
-
-The easiest way to create a new Hyperf project is to use [Composer](https://getcomposer.org/). If you don't have it already installed, then please install as per [the documentation](https://getcomposer.org/download/).
-
-To create your new Hyperf project:
+## 安装
 
 ```bash
-composer create-project hyperf/hyperf-skeleton path/to/install
+git clone https://github.com/Zero0719/admin-project.git
 ```
 
-If your development environment is based on Docker you can use the official Composer image to create a new Hyperf project:
-
 ```bash
-docker run --rm -it -v $(pwd):/app composer create-project --ignore-platform-reqs hyperf/hyperf-skeleton path/to/install
-```
+cd admin-project
 
-# Getting started
+composer install
 
-Once installed, you can run the server immediately using the command below.
+php bin/hyperf.php admin:install
 
-```bash
-cd path/to/install
 php bin/hyperf.php start
 ```
 
-Or if in a Docker based environment you can use the `docker-compose.yml` provided by the template:
+另起终端
 
-```bash
-cd path/to/install
-docker-compose up
+```php
+cd admin-project/public/vue-admin-template
+
+npm install
+
+# 如果有需要，请修改 .env.xxxx 中的 VUE_APP_BASE_API，该常量为后端 http 地址
+npm run dev
 ```
 
-This will start the cli-server on port `9501`, and bind it to all network interfaces. You can then visit the site at `http://localhost:9501/` which will bring up Hyperf default home page.
+## 权限控制
 
-## Hints
+`routes.php` 文件中 `admin` 组分为三部分，一部分是不需要登录就可以访问，比如登录接口，一种是需要登录，但是不需要校验权限，另外一种则是需要登录并且校验权限，具体请查看该文件
 
-- A nice tip is to rename `hyperf-skeleton` of files like `composer.json` and `docker-compose.yml` to your actual project name.
-- Take a look at `config/routes.php` and `app/Controller/IndexController.php` to see an example of a HTTP entrypoint.
+## 实操
 
-**Remember:** you can always replace the contents of this README.md file to something that fits your project description.
+新增一个日志列表
+
+`Admin/LogController.php`
+
+控制器建议继承 `BaseController`
+
+```php
+<?php
+declare(strict_types=1);
+
+namespace App\Controller\Admin;
+
+class LogController extends BaseController 
+{
+    public function index() 
+    {
+        $data = [
+            ['id' => 1, 'info' => '日志1'],
+            ['id' => 2, 'info' => '日志2'],
+            ['id' => 3, 'info' => '日志3'],
+            ['id' => 4, 'info' => '日志4'],
+        ];
+        
+        return $this->success($data);
+    }
+    
+    public function show() 
+    {
+        return $this->success([
+            'id' => 1,
+            'info' => '日志1'
+        ]);    
+    }
+}
+```
+
+`routes.php`
+
+在需要登录但是不需要鉴权中添加
+
+```php
+Router::get('/logs/{id}', ['App\Controller\Admin\LogController', 'show']);
+```
+
+登录且授权中添加，需要注意路由要命名，这个值和 `admin_permissions` 中的 `flag` 一致
+```php
+Router::get('/logs', ['App\Controller\Admin\LogController', 'index'], ['name' => 'logIndex']);
+```
+
+前端添加路由，`permission` 决定了是否有权限渲染路由
+
+```js
+{
+    path: '/logs',
+    name: 'Logs',
+    component: () => import('@/views/logs/index'),
+    meta: { title: '日志列表', permission: 'logIndex' }
+}
+```
+
+在后台权限面板中添加相应的权限 `logIndex`，并给角色授权等
+
+## 其他
+
+`admin.php` 中可配置白名单用户或者白名单角色
