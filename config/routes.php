@@ -38,8 +38,12 @@ Router::addGroup('/admin', function () {
         Router::get('/user/{id}/roles', [App\Controller\Admin\UsersController::class, 'roles']);
         Router::get('/role/{id}/permissions', [App\Controller\Admin\RolesController::class, 'permissions']);
 
+        Router::get('/logs/{id}', [App\Controller\Admin\LogsController::class, 'show']);
+
         // 需要rbac鉴权部分
         Router::addGroup('', function () {
+            Router::get('/logs', [App\Controller\Admin\LogsController::class, 'list'], ['name' => 'logList']);
+
             Router::get('/users', [App\Controller\Admin\UsersController::class, 'list'], ['name' => 'userList']);
             Router::post('/users', [App\Controller\Admin\UsersController::class, 'create'], ['name' => 'userCreate']);
             Router::put('/users/{id}', [App\Controller\Admin\UsersController::class, 'update'], ['name' => 'userUpdate']);
@@ -58,7 +62,7 @@ Router::addGroup('/admin', function () {
 
             Router::post('/syncRoleToUser', [App\Controller\Admin\RbacController::class, 'syncRoleToUser'], ['name' => 'syncRoleToUser']);
             Router::post('/syncPermissionToRole', [App\Controller\Admin\RbacController::class, 'syncPermissionToRole'], ['name' => 'syncPermissionToRole']);
-        }, ['middleware' => [\App\Middleware\RbacMiddleware::class]]);
+        }, ['middleware' => [\App\Middleware\RbacMiddleware::class, \App\Middleware\UserOperationLogMiddleware::class]]);
     }, ['middleware' => [Phper666\JWTAuth\Middleware\JWTAuthDefaultSceneMiddleware::class]]);
 });
 /*---admin route end---*/

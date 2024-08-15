@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Service\Admin;
 
+use App\Producer\UserOperationLogProducer;
+use Hyperf\Collection\Arr;
 use Hyperf\Context\ApplicationContext;
 use Phper666\JWTAuth\Util\JWTUtil;
 use App\Model\Admin\User;
@@ -10,7 +12,10 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Zero0719\HyperfApi\Exception\BusinessException;
 use Zero0719\HyperfApi\Service\TokenService;
+use Zero0719\HyperfApi\Utils\CommonUtil;
 use function Hyperf\Config\config;
+use Hyperf\Di\Annotation\Inject;
+use function Hyperf\Support\make;
 
 class SessionsService extends BaseService
 {
@@ -38,6 +43,13 @@ class SessionsService extends BaseService
         $tokenService = ApplicationContext::getContainer()->get(TokenService::class);
 
         $data = $user->only(config('admin.jwt.custom_claims'));
+
+        make(UserOperationLogProducer::class)->push([
+            'user_id' => $user->id,
+            'url' => $this->request->getMethod() . ':' . $this->request->getUri()->getPath(),
+            'data' => Arr::only($this->request->all(), ['username']),
+            'ip' => CommonUtil::getIp()
+        ]);
 
         return $tokenService->generate($data);
     }

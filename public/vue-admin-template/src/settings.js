@@ -13,5 +13,5 @@ module.exports = {
    * @description Whether show the logo in sidebar
    */
   sidebarLogo: false,
-  tagsView: true,
+  tagsView: true
 }

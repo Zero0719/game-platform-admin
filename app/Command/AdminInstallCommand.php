@@ -73,6 +73,7 @@ class AdminInstallCommand extends HyperfCommand
         // 生成初始权限
         $now = date('Y-m-d H:i:s');
         $permissions = [
+            ['name' => '日志列表', 'flag' => 'logList', 'created_at' => $now, 'updated_at' => $now],
             ['name' => '用户列表', 'flag' => 'userList', 'created_at' => $now, 'updated_at' => $now],
             ['name' => '创建用户', 'flag' => 'userCreate', 'created_at' => $now, 'updated_at' => $now],
             ['name' => '更新用户', 'flag' => 'userUpdate', 'created_at' => $now, 'updated_at' => $now],
@@ -86,7 +87,7 @@ class AdminInstallCommand extends HyperfCommand
             ['name' => '更新权限', 'flag' => 'permissionUpdate', 'created_at' => $now, 'updated_at' => $now],
             ['name' => '删除权限', 'flag' => 'permissionDestroy', 'created_at' => $now, 'updated_at' => $now],
             ['name' => '同步角色到用户', 'flag' => 'syncRoleToUser', 'created_at' => $now, 'updated_at' => $now],
-            ['name' => '同步权限到角色', 'flag' => 'syncPermissionToRole', 'created_at' => $now, 'updated_at' => $now]
+            ['name' => '同步权限到角色', 'flag' => 'syncPermissionToRole', 'created_at' => $now, 'updated_at' => $now],
         ];
 
         AdminPermissions::insert($permissions);

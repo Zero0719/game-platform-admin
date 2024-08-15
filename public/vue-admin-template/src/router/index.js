@@ -83,6 +83,12 @@ export const asyncRoutes = [
     },
     children: [
       {
+        path: '/logs',
+        name: 'Logs',
+        component: () => import('@/views/log/index'),
+        meta: { title: '日志列表', permission: 'logList' }
+      },
+      {
         path: '/users',
         name: 'Users',
         component: () => import('@/views/user/index'),
