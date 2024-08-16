@@ -108,6 +108,20 @@ export const asyncRoutes = [
       }
     ]
   },
+  {
+    path: '/manage',
+    component: Layout,
+    name: 'Manage',
+    meta: { title: '运营管理' },
+    children: [
+      {
+        path: '/games',
+        name: 'Games',
+        component: () => import('@/views/game/index'),
+        meta: { title: '游戏列表', permission: 'gameList' }
+      }
+    ]
+  },
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }

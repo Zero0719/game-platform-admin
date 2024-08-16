@@ -7,6 +7,7 @@ use App\Model\Admin\User;
 use App\Model\Game;
 use App\Service\Admin\BaseService;
 use Hyperf\Database\Model\Builder;
+use Hyperf\DbConnection\Db;
 use Zero0719\HyperfApi\Exception\BusinessException;
 
 class GameService extends BaseService
@@ -24,6 +25,9 @@ class GameService extends BaseService
         });
 
         $count = $query->count();
+        $query->select('*');
+        $query->addSelect(Db::raw('FROM_UNIXTIME(created_at, "%Y-%m-%d %H:%i:%s") AS created_at'));
+
         $query->orderByDesc('id');
         $lists = $this->getForPage($query);
 
@@ -69,11 +73,8 @@ class GameService extends BaseService
     {
         $game = Game::findOrFail($this->request->route('id'));
 
-        $game->transform(function ($game) {
-            $game->created_at = date('Y-m-d H:i:s', $game->created_at);
-            $game->updated_at = $game->updated_at ? date('Y-m-d H:i:s', $game->updated_at) : '-';
-            return $game;
-        });
+        $game->created_at = date('Y-m-d H:i:s', $game->created_at);
+        $game->updated_at = $game->updated_at ? date('Y-m-d H:i:s', $game->updated_at) : '-';
 
         return $game->toArray();
     }
