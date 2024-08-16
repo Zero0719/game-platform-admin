@@ -35,12 +35,12 @@ class RbacMiddleware implements MiddlewareInterface
         }
 
         // 没有路由命名统一拒绝
-        $routeName = CommonUtil::getCurrentRouteName();
-        if (!$routeName) {
+        $routeFlag = CommonUtil::getCurrentRouteFlag();
+        if (!$routeFlag) {
             throw new BusinessException('路由无命名，拒绝通过');
         }
 
-        if (!in_array($routeName, $user['permissions'])) {
+        if (!in_array($routeFlag, $user['permissions'])) {
             throw new BusinessException('权限不足');
         }
 
