@@ -115,6 +115,12 @@ export const asyncRoutes = [
     meta: { title: '运营管理' },
     children: [
       {
+        path: '/payments',
+        name: 'Payments',
+        component: () => import('@/views/payment/index'),
+        meta: { title: '支付列表', permission: 'paymentList' }
+      },
+      {
         path: '/games',
         name: 'Games',
         component: () => import('@/views/game/index'),

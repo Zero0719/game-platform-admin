@@ -42,7 +42,7 @@ export default {
     // 获取列表数据
     async fetchData() {
       if (typeof this.pageUrl !== 'function') {
-        throw new Error('请给 pageUrl 赋值请求函数')
+        return
       }
       this.loading = true
       const result = await this.pageUrl(this.searchForm)

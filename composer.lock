@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7635c259acb62ffc60cbe0ec194dd460",
+    "content-hash": "cbb24befd26edd2818cb3877898e1bb6",
     "packages": [
         {
             "name": "carbonphp/carbon-doctrine-types",
@@ -1400,6 +1400,72 @@
                 "hyperf",
                 "php",
                 "swoole"
+            ],
+            "support": {
+                "docs": "https://hyperf.wiki",
+                "issues": "https://github.com/hyperf/hyperf/issues",
+                "pull-request": "https://github.com/hyperf/hyperf/pulls",
+                "source": "https://github.com/hyperf/hyperf"
+            },
+            "funding": [
+                {
+                    "url": "https://hyperf.wiki/#/zh-cn/donate",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://opencollective.com/hyperf",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2024-06-17T01:51:06+00:00"
+        },
+        {
+            "name": "hyperf/constants",
+            "version": "v3.1.27",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hyperf/constants.git",
+                "reference": "365003c9420ebc5d9b7044260cdf62f6a0c6f4b1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hyperf/constants/zipball/365003c9420ebc5d9b7044260cdf62f6a0c6f4b1",
+                "reference": "365003c9420ebc5d9b7044260cdf62f6a0c6f4b1",
+                "shasum": ""
+            },
+            "require": {
+                "hyperf/di": "~3.1.0",
+                "hyperf/support": "~3.1.0",
+                "hyperf/utils": "~3.1.0",
+                "php": ">=8.1"
+            },
+            "suggest": {
+                "hyperf/translation": "Required to use translation."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1-dev"
+                },
+                "hyperf": {
+                    "config": "Hyperf\\Constants\\ConfigProvider"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Hyperf\\Constants\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A constants component for hyperf.",
+            "homepage": "https://hyperf.io",
+            "keywords": [
+                "constants",
+                "hyperf",
+                "php"
             ],
             "support": {
                 "docs": "https://hyperf.wiki",

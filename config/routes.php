@@ -43,6 +43,9 @@ Router::addGroup('/admin', function () {
         Router::get('/all/games', [App\Controller\GamesController::class, 'all']);
         Router::get('/games/{id}', [App\Controller\GamesController::class, 'show']);
 
+        Router::get('/payment/platform', [App\Controller\PaymentController::class, 'getPayPlatform']);
+        Router::get('/payment/type', [App\Controller\PaymentController::class, 'getPayType']);
+
         // 需要rbac鉴权部分
         Router::addGroup('', function () {
             Router::get('/logs', [App\Controller\Admin\LogsController::class, 'list'], ['name' => '日志列表', 'flag' => 'logList']);
