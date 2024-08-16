@@ -40,6 +40,9 @@ Router::addGroup('/admin', function () {
 
         Router::get('/logs/{id}', [App\Controller\Admin\LogsController::class, 'show']);
 
+        Router::get('/all/games', [App\Controller\GamesController::class, 'all']);
+        Router::get('/games/{id}', [App\Controller\GamesController::class, 'show']);
+
         // 需要rbac鉴权部分
         Router::addGroup('', function () {
             Router::get('/logs', [App\Controller\Admin\LogsController::class, 'list'], ['name' => 'logList']);
@@ -62,6 +65,11 @@ Router::addGroup('/admin', function () {
 
             Router::post('/syncRoleToUser', [App\Controller\Admin\RbacController::class, 'syncRoleToUser'], ['name' => 'syncRoleToUser']);
             Router::post('/syncPermissionToRole', [App\Controller\Admin\RbacController::class, 'syncPermissionToRole'], ['name' => 'syncPermissionToRole']);
+
+            Router::get('/games', [App\Controller\GamesController::class, 'list'], ['name' => 'gameList']);
+            Router::post('/games', [App\Controller\GamesController::class, 'create'], ['name' => 'gameCreate']);
+            Router::put('/games/{id}', [App\Controller\GamesController::class, 'update'], ['name' => 'gameUpdate']);
+            Router::delete('/games/{id}', [App\Controller\GamesController::class, 'destroy'], ['name' => 'gameDestroy']);
         }, ['middleware' => [\App\Middleware\RbacMiddleware::class, \App\Middleware\UserOperationLogMiddleware::class]]);
     }, ['middleware' => [Phper666\JWTAuth\Middleware\JWTAuthDefaultSceneMiddleware::class]]);
 });
