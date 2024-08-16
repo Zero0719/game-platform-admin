@@ -45,31 +45,31 @@ Router::addGroup('/admin', function () {
 
         // 需要rbac鉴权部分
         Router::addGroup('', function () {
-            Router::get('/logs', [App\Controller\Admin\LogsController::class, 'list'], ['name' => 'logList']);
+            Router::get('/logs', [App\Controller\Admin\LogsController::class, 'list'], ['name' => '日志列表', 'flag' => 'logList']);
 
-            Router::get('/users', [App\Controller\Admin\UsersController::class, 'list'], ['name' => 'userList']);
-            Router::post('/users', [App\Controller\Admin\UsersController::class, 'create'], ['name' => 'userCreate']);
-            Router::put('/users/{id}', [App\Controller\Admin\UsersController::class, 'update'], ['name' => 'userUpdate']);
-            Router::delete('/users/{id}', [App\Controller\Admin\UsersController::class, 'destroy'], ['name' => 'userDestroy']);
-            Router::put('/users/status/{id}', [App\Controller\Admin\UsersController::class, 'changeStatus'], ['name' => 'changeUserStatus']);
+            Router::get('/users', [App\Controller\Admin\UsersController::class, 'list'], ['name' => '用户列表', 'flag' => 'userList']);
+            Router::post('/users', [App\Controller\Admin\UsersController::class, 'create'], ['name' => '创建用户', 'flag' => 'userCreate']);
+            Router::put('/users/{id}', [App\Controller\Admin\UsersController::class, 'update'], ['name' => '更新用户', 'flag' => 'userUpdate']);
+            Router::delete('/users/{id}', [App\Controller\Admin\UsersController::class, 'destroy'], ['name' => '删除用户', 'flag' => 'userDestroy']);
+            Router::put('/users/status/{id}', [App\Controller\Admin\UsersController::class, 'changeStatus'], ['name' => '修改用户状态', 'flag' => 'changeUserStatus']);
 
-            Router::get('/roles', [App\Controller\Admin\RolesController::class, 'list'], ['name' => 'roleList']);
-            Router::post('/roles', [App\Controller\Admin\RolesController::class, 'create'], ['name' => 'roleCreate']);
-            Router::put('/roles/{id}', [App\Controller\Admin\RolesController::class, 'update'], ['name' => 'roleUpdate']);
-            Router::delete('/roles/{id}', [App\Controller\Admin\RolesController::class, 'destroy'], ['name' => 'roleDestroy']);
+            Router::get('/roles', [App\Controller\Admin\RolesController::class, 'list'], ['name' => '角色列表', 'flag' => 'roleList']);
+            Router::post('/roles', [App\Controller\Admin\RolesController::class, 'create'], ['name' => '创建角色', 'flag' => 'roleCreate']);
+            Router::put('/roles/{id}', [App\Controller\Admin\RolesController::class, 'update'], ['name' => '更新角色', 'flag' => 'roleUpdate']);
+            Router::delete('/roles/{id}', [App\Controller\Admin\RolesController::class, 'destroy'], ['name' => '删除角色','flag' => 'roleDestroy']);
 
-            Router::get('/permissions', [App\Controller\Admin\PermissionsController::class, 'list'], ['name' => 'permissionList']);
-            Router::post('/permissions', [App\Controller\Admin\PermissionsController::class, 'create'], ['name' => 'permissionCreate']);
-            Router::put('/permissions/{id}', [App\Controller\Admin\PermissionsController::class, 'update'], ['name' => 'permissionUpdate']);
-            Router::delete('/permissions/{id}', [App\Controller\Admin\PermissionsController::class, 'destroy'], ['name' => 'permissionDestroy']);
+            Router::get('/permissions', [App\Controller\Admin\PermissionsController::class, 'list'], ['name' => '权限列表', 'flag' => 'permissionList']);
+            Router::post('/permissions', [App\Controller\Admin\PermissionsController::class, 'create'], ['name' => '创建权限', 'flag' => 'permissionCreate']);
+            Router::put('/permissions/{id}', [App\Controller\Admin\PermissionsController::class, 'update'], ['name' => '更新权限', 'flag' => 'permissionUpdate']);
+            Router::delete('/permissions/{id}', [App\Controller\Admin\PermissionsController::class, 'destroy'], ['name' => '删除权限', 'flag' => 'permissionDestroy']);
 
-            Router::post('/syncRoleToUser', [App\Controller\Admin\RbacController::class, 'syncRoleToUser'], ['name' => 'syncRoleToUser']);
-            Router::post('/syncPermissionToRole', [App\Controller\Admin\RbacController::class, 'syncPermissionToRole'], ['name' => 'syncPermissionToRole']);
+            Router::post('/syncRoleToUser', [App\Controller\Admin\RbacController::class, 'syncRoleToUser'], ['name' => '同步角色到用户', 'flag' => 'syncRoleToUser']);
+            Router::post('/syncPermissionToRole', [App\Controller\Admin\RbacController::class, 'syncPermissionToRole'], ['name' => '同步权限到角色', 'flag' => 'syncPermissionToRole']);
 
-            Router::get('/games', [App\Controller\GamesController::class, 'list'], ['name' => 'gameList']);
-            Router::post('/games', [App\Controller\GamesController::class, 'create'], ['name' => 'gameCreate']);
-            Router::put('/games/{id}', [App\Controller\GamesController::class, 'update'], ['name' => 'gameUpdate']);
-            Router::delete('/games/{id}', [App\Controller\GamesController::class, 'destroy'], ['name' => 'gameDestroy']);
+            Router::get('/games', [App\Controller\GamesController::class, 'list'], ['name' => '游戏列表', 'flag' => 'gameList']);
+            Router::post('/games', [App\Controller\GamesController::class, 'create'], ['name' => '创建游戏', 'flag' => 'gameCreate']);
+            Router::put('/games/{id}', [App\Controller\GamesController::class, 'update'], ['name' => '更新游戏', 'flag' => 'gameUpdate']);
+            Router::delete('/games/{id}', [App\Controller\GamesController::class, 'destroy'], ['name' => '删除游戏', 'flag' => 'gameDestroy']);
         }, ['middleware' => [\App\Middleware\RbacMiddleware::class, \App\Middleware\UserOperationLogMiddleware::class]]);
     }, ['middleware' => [Phper666\JWTAuth\Middleware\JWTAuthDefaultSceneMiddleware::class]]);
 });
