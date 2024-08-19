@@ -43,8 +43,7 @@ Router::addGroup('/admin', function () {
         Router::get('/all/games', [App\Controller\GamesController::class, 'all']);
         Router::get('/games/{id}', [App\Controller\GamesController::class, 'show']);
 
-        Router::get('/payment/platform', [App\Controller\PaymentController::class, 'getPayPlatform']);
-        Router::get('/payment/type', [App\Controller\PaymentController::class, 'getPayType']);
+        Router::get('/paymentProviders/{id}', [App\Controller\PaymentProviderController::class, 'show']);
 
         // 需要rbac鉴权部分
         Router::addGroup('', function () {
@@ -73,6 +72,11 @@ Router::addGroup('/admin', function () {
             Router::post('/games', [App\Controller\GamesController::class, 'create'], ['name' => '创建游戏', 'flag' => 'gameCreate']);
             Router::put('/games/{id}', [App\Controller\GamesController::class, 'update'], ['name' => '更新游戏', 'flag' => 'gameUpdate']);
             Router::delete('/games/{id}', [App\Controller\GamesController::class, 'destroy'], ['name' => '删除游戏', 'flag' => 'gameDestroy']);
+
+            Router::get('/paymentProviders', [App\Controller\PaymentProviderController::class, 'list'], ['name' => '支付商列表', 'flag' => 'paymentProviderList']);
+            Router::post('/paymentProviders', [App\Controller\PaymentProviderController::class, 'create'], ['name' => '添加支付商', 'flag' => 'paymentProviderCreate']);
+            Router::put('/paymentProviders/{id}', [App\Controller\PaymentProviderController::class, 'update'], ['name' => '更新支付商', 'flag' => 'paymentProviderUpdate']);
+            Router::delete('/paymentProviders/{id}', [App\Controller\PaymentProviderController::class, 'destroy'], ['name' => '删除支付商', 'flag' => 'paymentProviderDestroy']);
         }, ['middleware' => [\App\Middleware\RbacMiddleware::class, \App\Middleware\UserOperationLogMiddleware::class]]);
     }, ['middleware' => [Phper666\JWTAuth\Middleware\JWTAuthDefaultSceneMiddleware::class]]);
 });

@@ -115,6 +115,12 @@ export const asyncRoutes = [
     meta: { title: '运营管理' },
     children: [
       {
+        path: '/paymentProviders',
+        name: 'PaymentProviders',
+        component: () => import('@/views/payment_provider/index'),
+        meta: { title: '支付商列表', permission: 'paymentProviderList' }
+      },
+      {
         path: '/payments',
         name: 'Payments',
         component: () => import('@/views/payment/index'),
