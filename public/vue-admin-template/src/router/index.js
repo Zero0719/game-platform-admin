@@ -124,7 +124,7 @@ export const asyncRoutes = [
         path: '/payments',
         name: 'Payments',
         component: () => import('@/views/payment/index'),
-        meta: { title: '支付列表', permission: 'paymentList' }
+        meta: { title: '支付方式列表', permission: 'paymentList' }
       },
       {
         path: '/games',

@@ -10,7 +10,7 @@
       </el-form-item>
 
       <el-form-item label="app_secret">
-        <el-input type="textarea" rows="3" v-model="form.appSecret" placeholder="请输入应用密钥" />
+        <el-input v-model="form.appSecret" type="textarea" rows="3" placeholder="请输入应用密钥" />
       </el-form-item>
 
       <el-form-item label="状态">
@@ -32,7 +32,7 @@
       </el-form-item>
 
       <el-form-item label="备注">
-        <el-input type="textarea" rows="3" v-model="form.remark" placeholder="请输入备注" />
+        <el-input v-model="form.remark" type="textarea" rows="3" placeholder="请输入备注" />
       </el-form-item>
 
       <el-form-item label="">

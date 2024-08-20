@@ -91,4 +91,9 @@ class PaymentProviderService extends BaseService
 
         return $paymentProvider->toArray();
     }
+
+    public function all()
+    {
+        return PaymentProvider::select(['id', 'name'])->get()->toArray();
+    }
 }

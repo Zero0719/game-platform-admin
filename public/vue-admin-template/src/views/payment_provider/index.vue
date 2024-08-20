@@ -59,7 +59,7 @@
           </template>
         </el-table-column>
       </el-table>
-      <el-pagination :total="pageData.count" :current-page="searchForm.page" :page-size="searchForm.perPage" layout="total,prev,pager,next" @current-change="changePage" />
+      <el-pagination :total="pageData.count" :current-page="searchForm.page" :page-size="searchForm.pageSize" layout="total,prev,pager,next" @current-change="changePage" />
     </el-card>
 
     <component :is="pageComponent" :target-id="targetId" @closeDialog="closeDialog" @submitSuccess="submitSuccess" />

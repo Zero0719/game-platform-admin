@@ -5,14 +5,13 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Controller\Admin\BaseController;
-use App\Request\PaymentProviderRequest;
-use App\Service\PaymentProviderService;
+use App\Service\PaymentService;
 
-class PaymentProviderController extends BaseController
+class PaymentController extends BaseController
 {
-    protected PaymentProviderService $service;
+    protected PaymentService $service;
 
-    public function __construct(PaymentProviderService $service)
+    public function __construct(PaymentService $service)
     {
         $this->service = $service;
     }
@@ -22,13 +21,13 @@ class PaymentProviderController extends BaseController
         return $this->success($this->service->list());
     }
 
-    public function create(PaymentProviderRequest $request)
+    public function create()
     {
         $this->service->create();
         return $this->success();
     }
 
-    public function update(PaymentProviderRequest $request)
+    public function update()
     {
         $this->service->update();
         return $this->success();
@@ -48,5 +47,10 @@ class PaymentProviderController extends BaseController
     public function all()
     {
         return $this->success($this->service->all());
+    }
+
+    public function paymentTypes()
+    {
+        return $this->success($this->service->paymentTypes());
     }
 }

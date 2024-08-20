@@ -44,6 +44,11 @@ Router::addGroup('/admin', function () {
         Router::get('/games/{id}', [App\Controller\GamesController::class, 'show']);
 
         Router::get('/paymentProviders/{id}', [App\Controller\PaymentProviderController::class, 'show']);
+        Router::get('/all/paymentProviders', [App\Controller\PaymentProviderController::class, 'all']);
+
+        Router::get('/payments/{id}', [App\Controller\PaymentController::class, 'show']);
+        Router::get('/all/payments', [App\Controller\PaymentController::class, 'all']);
+        Router::get('/paymentTypes', [App\Controller\PaymentController::class, 'paymentTypes']);
 
         // 需要rbac鉴权部分
         Router::addGroup('', function () {
@@ -77,6 +82,11 @@ Router::addGroup('/admin', function () {
             Router::post('/paymentProviders', [App\Controller\PaymentProviderController::class, 'create'], ['name' => '添加支付商', 'flag' => 'paymentProviderCreate']);
             Router::put('/paymentProviders/{id}', [App\Controller\PaymentProviderController::class, 'update'], ['name' => '更新支付商', 'flag' => 'paymentProviderUpdate']);
             Router::delete('/paymentProviders/{id}', [App\Controller\PaymentProviderController::class, 'destroy'], ['name' => '删除支付商', 'flag' => 'paymentProviderDestroy']);
+
+            Router::get('/payments', [App\Controller\PaymentController::class, 'list'], ['name' => '支付方式列表', 'flag' => 'paymentList']);
+            Router::post('/payments', [App\Controller\PaymentController::class, 'create'], ['name' => '添加支付方式', 'flag' => 'paymentCreate']);
+            Router::put('/payments/{id}', [App\Controller\PaymentController::class, 'update'], ['name' => '更新支付方式', 'flag' => 'paymentUpdate']);
+            Router::delete('/payments/{id}', [App\Controller\PaymentController::class, 'destroy'], ['name' => '删除支付方式', 'flag' => 'paymentDestroy']);
         }, ['middleware' => [\App\Middleware\RbacMiddleware::class, \App\Middleware\UserOperationLogMiddleware::class]]);
     }, ['middleware' => [Phper666\JWTAuth\Middleware\JWTAuthDefaultSceneMiddleware::class]]);
 });

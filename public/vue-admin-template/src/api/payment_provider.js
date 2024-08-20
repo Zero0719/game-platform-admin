@@ -35,3 +35,9 @@ export function showPaymentProvider(id) {
     url: `/admin/paymentProviders/${id}`
   })
 }
+
+export function allPaymentProvider() {
+  return request({
+    url: '/admin/all/paymentProviders'
+  })
+}
